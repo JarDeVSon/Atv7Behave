@@ -12,14 +12,14 @@ def accesses_platform(context):
     context.browser = Firefox()
     context.browser.get("https://teste.leadfortaleza.com.br/fabricadesinais/#!/")
 
-    wait = WebDriverWait(context.browser, 10)
+    wait = WebDriverWait(context.browser, 20)
     wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='btn-login']")))
     login_button = context.browser.find_element_by_css_selector("button[class='btn-login']")
     login_button.click()
 
 @when(u'the user authenticates with valid credentials')
 def authenticates(context):
-    wait = WebDriverWait(context.browser, 10)
+    wait = WebDriverWait(context.browser, 20)
     wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[id='login']")))
     login_field = context.browser.find_element_by_css_selector("input[id='login']")
     login_field.send_keys("jardesonusuario")
