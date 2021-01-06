@@ -17,6 +17,7 @@ use_step_matcher("re")
 @given(u'the user accesses the Fábrica de Sinais platform #4')
 def accesses_platform4(context):
     context.browser = Firefox()
+    context.implicitly_wait(5)
     context.browser.get("https://teste.leadfortaleza.com.br/fabricadesinais/#!/")
     login(context.browser, "jardesonusuario", "abcd1234")
 

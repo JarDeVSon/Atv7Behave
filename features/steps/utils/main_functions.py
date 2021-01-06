@@ -1,16 +1,8 @@
-import time
-from telnetlib import EC
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 def login(browser, username, password):
 
-    time.sleep(20)
-    #wait = WebDriverWait(browser, 20)
-    #wait.until(EC.element_to_be_clickable((By.ID, "btLogin")))
-
+    browser.implicitly_wait(5)
     login_button = browser.find_element_by_id("btLogin")
     login_button.click()
 

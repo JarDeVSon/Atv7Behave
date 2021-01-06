@@ -10,6 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 @given(u'the user accesses the Fábrica de Sinais platform')
 def accesses_platform(context):
     context.browser = Firefox()
+    context.implicitly_wait(5)
     context.browser.get("https://teste.leadfortaleza.com.br/fabricadesinais/#!/")
 
     wait = WebDriverWait(context.browser, 20)
