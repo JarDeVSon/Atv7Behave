@@ -33,7 +33,6 @@ def profile_menu(context):
 def profile_information(context):
     wait = WebDriverWait(context.browser, 20)
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, "row")))
-    profile_information = context.browser.find_element_by_class_name("row")
-    profile_information.text()
+    profile_information = context.browser.find_element_by_class_name("row").text()
     assert_equal("Jardeson da Silva Santos", profile_information)
     context.browser.quit()
