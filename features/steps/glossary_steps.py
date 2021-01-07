@@ -27,6 +27,6 @@ def glossary_menu(context):
 
 @then(u'the platform returns to the user the glossary items in alphabetical order')
 def glossary_items(context):
-    glossary_items = context.browser.find_element_by_tag_name("h4")
-    assert_equal("Itens do Glossário ", glossary_items)
+    glossary_items = context.browser.find_element_by_tag_name("h4").text
+    assert_equal("Itens do Glossário", glossary_items)
     context.browser.quit()

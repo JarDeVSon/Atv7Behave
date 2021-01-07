@@ -27,6 +27,6 @@ def my_signs_menu(context):
 
 @then(u'the platform returns to the user the his suggested Signs')
 def suggested_signs(context):
-    suggested_signs = context.browser.find_element_by_id("signsFactoryMyDiscussions")
-    assert_equal("Meus sinais sugeridos", suggested_signs)
+    suggested_signs = context.browser.find_element_by_class_name("panel-body").text
+    assert_equal("Não possui sugestões", suggested_signs)
     context.browser.quit()
