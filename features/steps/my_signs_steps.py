@@ -17,21 +17,16 @@ use_step_matcher("re")
 @given(u'the user accesses the Fábrica de Sinais platform #4')
 def accesses_platform4(context):
     context.browser = Firefox()
-    context.implicitly_wait(5)
     context.browser.get("https://teste.leadfortaleza.com.br/fabricadesinais/#!/")
     login(context.browser, "jardesonusuario", "abcd1234")
 
 @when(u'the user selects the My Signals on the top menu')
 def my_signs_menu(context):
-    wait = WebDriverWait(context.browser, 20)
-    wait.until(EC.presence_of_element_located((By.LINK_TEXT, "Meus Sinais")))
     my_signs_menu = context.browser.find_element_by_link_text("Meus Sinais")
     my_signs_menu.click()
 
 @then(u'the platform returns to the user the his suggested Signs')
 def suggested_signs(context):
-    wait = WebDriverWait(context.browser, 20)
-    wait.until(EC.presence_of_element_located((By.ID, "signsFactoryMyDiscussions")))
     suggested_signs = context.browser.find_element_by_id("signsFactoryMyDiscussions").text()
     assert_equal("Meus sinais sugeridos", suggested_signs)
     context.browser.quit()
