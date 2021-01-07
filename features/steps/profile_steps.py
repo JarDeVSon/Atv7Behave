@@ -24,12 +24,15 @@ def accesses_platform3(context):
 
 @when(u'the user selects the Profile on the top menu')
 def profile_menu(context):
+    wait = WebDriverWait(context.browser, 20)
+    wait.until(EC.presence_of_element_located((By.LINK_TEXT, "Perfil")))
     profile_menu = context.browser.find_element_by_link_text("Perfil")
     profile_menu.click()
 
 @then(u'the platform returns to the user his profile information.')
 def profile_information(context):
-    context.browser = Firefox()
+    wait = WebDriverWait(context.browser, 20)
+    wait.until(EC.presence_of_element_located((By.CLASS_NAME, "row")))
     profile_information = context.browser.find_element_by_class_name("row")
     profile_information.text()
     assert_equal("Jardeson da Silva Santos", profile_information)

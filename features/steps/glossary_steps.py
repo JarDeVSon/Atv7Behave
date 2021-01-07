@@ -1,12 +1,15 @@
 import os
 from operator import index
+from telnetlib import EC
 
 from behave import when, then, given, use_step_matcher
 from nose.tools import assert_equal
 from selenium.webdriver import Firefox
 import sys
 
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
 from setuptools.tests.mod_with_constant import value
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -24,13 +27,15 @@ def accesses_platform2(context):
 
 @when(u'the user selects the Glossary on the top menu')
 def glossary_menu(context):
+    wait = WebDriverWait(context.browser, 20)
+    wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Glossário")))
     glossary_menu = context.browser.find_element_by_link_text("Glossário")
     glossary_menu.click()
 
 @then(u'the platform returns to the user the glossary items in alphabetical order')
 def glossary_items(context):
-    glossary_items = context.browser.find_element_by_tag_name("h4")
-    glossary_items.text()
+    wait = WebDriverWait(context.browser, 20)
+    wait.until(EC.presence_of_element_located(By.TAG_NAME, "h4"))
+    glossary_items = context.browser.find_element_by_tag_name("h4").text()
     assert_equal("Itens do Glossário ", glossary_items)
-
     context.browser.quit()
