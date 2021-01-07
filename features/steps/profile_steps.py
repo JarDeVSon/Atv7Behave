@@ -28,6 +28,6 @@ def profile_menu(context):
 
 @then(u'the platform returns to the user his profile information.')
 def profile_information(context):
-    profile_information = context.browser.find_element_by_class_name("row").text
+    profile_information = context.browser.find_element_by_tag_name("h3").text
     assert_equal("Jardeson da Silva Santos", profile_information)
     context.browser.quit()
