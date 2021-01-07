@@ -1,4 +1,5 @@
 import os
+import time
 from telnetlib import EC
 
 from behave import given, when, then, use_step_matcher
@@ -23,11 +24,13 @@ def accesses_platform3(context):
 
 @when(u'the user selects the Profile on the top menu')
 def profile_menu(context):
+    time.sleep(5)
     profile_menu = context.browser.find_element_by_link_text("Perfil")
     profile_menu.click()
 
 @then(u'the platform returns to the user his profile information.')
 def profile_information(context):
-    profile_information = context.browser.find_element_by_tag_name("h3").text
+    time.sleep(3)
+    profile_information = context.browser.find_element_by_xpath("/html/body/div/section/div/section/div[1]/div/div[1]/div/div[1]/h3").text
     assert_equal("Jardeson da Silva Santos", profile_information)
     context.browser.quit()

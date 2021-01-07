@@ -1,4 +1,5 @@
 import os
+import time
 from telnetlib import EC
 
 from behave import given, when, then, use_step_matcher
@@ -22,11 +23,12 @@ def accesses_platform4(context):
 
 @when(u'the user selects the My Signals on the top menu')
 def my_signs_menu(context):
+    time.sleep(5)
     my_signs_menu = context.browser.find_element_by_link_text("Meus Sinais")
     my_signs_menu.click()
 
 @then(u'the platform returns to the user the his suggested Signs')
 def suggested_signs(context):
-    suggested_signs = context.browser.find_element_by_class_name("panel-body").text
-    assert_equal("Não possui sugestões", suggested_signs)
+    suggested_signs = context.browser.find_element_by_xpath("/html/body/div/section/div/section/div[1]/div/div/h4").text
+    assert_equal("Meus sinais sugeridos", suggested_signs)
     context.browser.quit()
