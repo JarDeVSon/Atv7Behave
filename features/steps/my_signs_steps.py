@@ -28,6 +28,5 @@ def my_signs_menu(context):
 @then(u'the platform returns to the user the his suggested Signs')
 def suggested_signs(context):
     suggested_signs = context.browser.find_element_by_id("signsFactoryMyDiscussions")
-    suggested_signs.text()
     assert_equal("Meus sinais sugeridos", suggested_signs)
     context.browser.quit()
