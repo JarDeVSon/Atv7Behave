@@ -1,16 +1,12 @@
 import os
-from operator import index
 from telnetlib import EC
-
 from behave import when, then, given, use_step_matcher
 from nose.tools import assert_equal
 from selenium.webdriver import Firefox
 import sys
-
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
-from setuptools.tests.mod_with_constant import value
+
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 path_dir = os.path.join(ROOT_DIR, "utils")
@@ -31,6 +27,7 @@ def glossary_menu(context):
 
 @then(u'the platform returns to the user the glossary items in alphabetical order')
 def glossary_items(context):
-    glossary_items = context.browser.find_element_by_tag_name("h4").text()
+    glossary_items = context.browser.find_element_by_tag_name("h4")
+    glossary_items.text()
     assert_equal("Itens do Glossário ", glossary_items)
     context.browser.quit()
